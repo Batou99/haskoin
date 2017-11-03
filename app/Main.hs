@@ -1,6 +1,7 @@
 module Main where
 
-import Data.String.Strip
+import Haskoin.Types
+import Haskoin.Mining
 
 main :: IO ()
-main = interact strip
+main = undefined
