@@ -8,7 +8,6 @@ import Data.ByteArray
 import qualified Data.ByteString as BS
 import qualified Data.ByteString.Lazy as BSL
 import Haskoin.Types
-import Protolude
 import Control.Monad
 import Crypto.Hash
 
@@ -17,8 +16,8 @@ deriving instance Generic Transaction
 deriving instance Generic Blockchain
 deriving instance Generic Block
 
-instance Binary BlockHeader where
-instance Binary Transaction where
+instance Binary BlockHeader
+instance Binary Transaction
 instance Binary Blockchain
 instance Binary Block
 
