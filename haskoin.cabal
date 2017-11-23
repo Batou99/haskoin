@@ -38,6 +38,8 @@ executable haskoin
 test-suite haskoin-test
   type:                exitcode-stdio-1.0
   hs-source-dirs:      test
+  exposed-modules:     Haskoin.SerializationSpec
+                     , Haskoin.MiningSpec
   main-is:             Spec.hs
   build-depends:       base
                      , haskoin
