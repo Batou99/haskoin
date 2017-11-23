@@ -18,7 +18,6 @@ library
   exposed-modules:     Haskoin.Types
                      , Haskoin.Serialization
   build-depends:       base >= 4.7 && < 5
-                     , protolude
                      , cryptonite
                      , binary
                      , bytestring
@@ -32,6 +31,9 @@ executable haskoin
   ghc-options:         -threaded -rtsopts -with-rtsopts=-N
   build-depends:       base
                      , haskoin
+                     , cryptonite
+                     , pretty-simple
+                     , bytestring
   default-language:    Haskell2010
 
 test-suite haskoin-test
@@ -43,7 +45,6 @@ test-suite haskoin-test
                      , haskoin
                      , hspec
                      , QuickCheck
-                     , protolude
                      , base16-bytestring
                      , cryptonite
   ghc-options:         -threaded -rtsopts -with-rtsopts=-N
