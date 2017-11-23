@@ -10,6 +10,7 @@ import qualified Data.ByteString.Lazy as BSL
 import Haskoin.Types
 import Control.Monad
 import Crypto.Hash
+import GHC.Generics
 
 deriving instance Generic BlockHeader
 deriving instance Generic Transaction
