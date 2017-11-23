@@ -1,4 +1,4 @@
-{-# LANGUAGE StandaloneDeriving, TypeSynonymInstances, FlexibleInstances, UndecidableInstances, DeriveGeneric, GeneralizedNewtypeDeriving #-}
+{-# LANGUAGE StandaloneDeriving, TypeSynonymInstances, FlexibleInstances, DeriveGeneric #-}
 
 module Haskoin.Serialization where
 
