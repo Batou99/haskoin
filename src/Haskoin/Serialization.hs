@@ -24,11 +24,11 @@ instance Binary Block
 
 instance Binary HaskoinHash where
   get = do
-    mDigest <- digestFromByteString <$> (B.get :: Get BSL.ByteString)
+    mDigest <- digestFromByteString <$> (B.get :: Get BS.ByteString)
     case mDigest of
       Nothing -> fail "Not a valid digest"
       Just digest -> return digest
-  put digest = B.put $ (convert digest :: BSL.ByteString)
+  put digest = B.put $ (convert digest :: BS.ByteString)
 
 deserialize :: BSL.ByteString -> Blockchain
 deserialize = B.decode
