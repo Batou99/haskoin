@@ -5,7 +5,6 @@ import Test.QuickCheck
 
 import Haskoin.Mining
 import Haskoin.Serialization
-import Protolude
 import qualified Data.ByteString.Base16.Lazy as BSL
 
 -- `main` is here so that this module can be run from GHCi on its own.  It is
