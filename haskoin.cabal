@@ -16,8 +16,6 @@ cabal-version:       >=1.10
 library
   hs-source-dirs:      src
   exposed-modules:     Haskoin.Types
-                     , Haskoin.Mining
-                     , Haskoin.Serialization
   build-depends:       base >= 4.7 && < 5
                      , cryptonite
                      , binary
@@ -35,7 +33,9 @@ executable haskoin
   build-depends:       base
                      , haskoin
                      , time
-                     , show-prettyprint
+                     , pretty-simple
+                     , cryptonite
+                     , bytestring
   default-language:    Haskell2010
 
 test-suite haskoin-test

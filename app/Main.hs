@@ -1,43 +1,27 @@
 module Main where
 
 import Haskoin.Types
-import Haskoin.Mining
-import Data.Time.Clock
-import Control.Monad
-import Text.Show.Prettyprint
+import Text.Pretty.Simple
+import Crypto.Hash(hashlazy)
+import Data.ByteString.Lazy.Char8(pack)
 
-testMining :: IO Blockchain
-testMining = do
-  chain <- makeGenesis
-  chain <- mineOn (return []) 0 chain
-  chain <- mineOn (return []) 0 chain
-  chain <- mineOn (return []) 0 chain
-  chain <- mineOn (return []) 0 chain
-  chain <- mineOn (return []) 0 chain
-  return chain
-
-timeForLastBlock :: Blockchain -> NominalDiffTime
-timeForLastBlock bc =
-  timeX - timeY
-  where
-    (x:y:_) = headers bc
-    timeX = _minedAt x
-    timeY = _minedAt y
-
-runStep :: Blockchain -> IO Blockchain 
-runStep chain = do
-  chain <- mineOn (return []) 0 chain
-  prettyPrint $ "desired diff: " ++ (show $ desiredDifficulty chain)
-  prettyPrint $ "nonce: " ++ (show $ _nonce (head (headers chain)))
-  prettyPrint $ "time: " ++ (show $ timeForLastBlock chain)
-  return chain
+getHash :: String -> HaskoinHash
+getHash value = hashlazy (pack value) :: HaskoinHash
 
 main :: IO ()
 main = do
-  chain <- testMining
+  let genesisBlock = Genesis (Block [])
+      firstBlock   = Node (Block [Transaction 0 1 1000]) 
+                        BlockHeader { _minerAccount = 0, _parentHash = getHash "genesisHash" } 
+                        genesisBlock
+      chain        = Node (Block [Transaction 1 0 1000]) 
+                        BlockHeader { _minerAccount = 0, _parentHash = getHash "firstHash" } 
+                        firstBlock
+      txns         = mconcat $ map transactions (blocks chain)
 
-  chain <- foldl (>>=) (return chain) (replicate 30 runStep)
-  print "done"
+  pPrint chain
+  pPrint txns
+
 
 
 

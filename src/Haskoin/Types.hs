@@ -3,7 +3,6 @@
 module Haskoin.Types where
 
 import Crypto.Hash
-import Data.Time.Clock.POSIX
 
 type Account = Integer
 
@@ -19,9 +18,7 @@ type HaskoinHash = Digest SHA1
 
 data BlockHeader = BlockHeader {
     _minerAccount :: Account,
-    _parentHash :: HaskoinHash,
-    _nonce :: Integer,
-    _minedAt :: POSIXTime
+    _parentHash :: HaskoinHash
   } deriving (Eq, Show)
 
 
