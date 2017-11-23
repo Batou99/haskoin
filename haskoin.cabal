@@ -17,6 +17,7 @@ library
   hs-source-dirs:      src
   exposed-modules:     Haskoin.Types
                      , Haskoin.Serialization
+                     , Haskoin.Mining
   build-depends:       base >= 4.7 && < 5
                      , cryptonite
                      , binary
@@ -40,6 +41,7 @@ test-suite haskoin-test
   type:                exitcode-stdio-1.0
   hs-source-dirs:      test
   exposed-modules:     Haskoin.SerializationSpec
+                     , Haskoin.MiningSpec
   main-is:             Spec.hs
   build-depends:       base
                      , haskoin
