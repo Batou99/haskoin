@@ -2,6 +2,7 @@
 
 module Haskoin.Serialization where
 
+import GHC.Generics
 import Data.Binary as B
 import Data.Binary.Get
 import Data.ByteArray
@@ -10,7 +11,7 @@ import qualified Data.ByteString.Lazy as BSL
 import Haskoin.Types
 import Control.Monad
 import Crypto.Hash
-import GHC.Generics
+import Data.Time.Clock.POSIX
 
 deriving instance Generic BlockHeader
 deriving instance Generic Transaction
@@ -30,9 +31,13 @@ instance Binary HaskoinHash where
       Just digest -> return digest
   put digest = B.put $ (convert digest :: BS.ByteString)
 
+instance Binary POSIXTime where
+  get = fromInteger <$> (B.get :: Get Integer)
+  put x = B.put $ (round x :: Integer)
+
+
 deserialize :: BSL.ByteString -> Blockchain
 deserialize = B.decode
 
 serialize :: Blockchain -> BSL.ByteString
 serialize = B.encode
-
