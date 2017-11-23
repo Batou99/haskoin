@@ -40,4 +40,3 @@ spec = do
       _parentHash (extractHeader second) `shouldBe` hashlazy(serialize first)
 
 
-
